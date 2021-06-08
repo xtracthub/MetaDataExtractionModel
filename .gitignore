@@ -1,2 +1,5 @@
 CDIACPub8/
 byte_distr.npy
+jsd_matrix_sparse_no_zero.npz
+byte_prob_distr_no_zero.npy
+jsd_matrix_sparse_.npz
