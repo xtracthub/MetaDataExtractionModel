@@ -5,4 +5,6 @@ byte_prob_distr_no_zero.npy
 jsd_matrix_sparse_.npz
 Dropbox/
 listOfFiles.txt
-
+2_grams.json
+byte_distr_filtered_real.npy
+3_grams.json
