@@ -11,3 +11,6 @@ byte_distr_filtered_real.npy
 2_grams copy.json
 3_grams copy.json
 2_grams_PP.json
+CDIACImgPredictions/
+CDIACKeywordExtract/
+CDIACTabularExtracted/
