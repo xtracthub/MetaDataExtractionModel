@@ -14,3 +14,7 @@ byte_distr_filtered_real.npy
 CDIACImgPredictions/
 CDIACKeywordExtract/
 CDIACTabularExtracted/
+CorrelatingExtractors/best_extractors.json
+CorrelatingExtractors/.vscode/settings.json
+.gitignore
+.gitignore

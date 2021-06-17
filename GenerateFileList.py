@@ -1,16 +1,10 @@
-
 ''' 
 
 Disregard this, just to print out what order the files are iterated 
 through 
 
-
 '''
-
-
-
 import os 
-
 file_base = "../CDIACPub8"
 
 file_names = []
