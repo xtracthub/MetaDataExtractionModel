@@ -18,3 +18,5 @@ CorrelatingExtractors/best_extractors.json
 CorrelatingExtractors/.vscode/settings.json
 .gitignore
 .gitignore
+subdataset/gathered_data.pkl
+subdataset/gathered_data_2_grams_NOPP.pkl
