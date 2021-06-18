@@ -10,9 +10,9 @@ for key in two_grams_dict:
 	file_dict = two_grams_dict[key]
 	for i in range(MAX_BIT_SIZE):
 		for j in range(MAX_BIT_SIZE):
-			key = str(hex(i)) + '-' + str(hex(j))
-			if key not in two_grams_dict:
-				file_dict[key] = 0
+			hex_key = str(hex(i)) + '-' + str(hex(j))
+			if hex_key not in file_dict:
+				file_dict[hex_key] = 0
 
 	index += 1
 	if index % 1000 == 0:
