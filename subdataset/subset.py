@@ -43,19 +43,19 @@ for idx, data_list in enumerate(dataset):
     elif idx == 1:
         curr_sample = csv_sample_names
     else:
-        curr_sample = pdf_data
+        curr_sample = pdfs_sample_names
 
     for i in range(MAX_SAMPLE_SIZE):
         parsed_name = curr_sample[i].split("kEy")
         file_name = parsed_name[0]
-        file_index = parsed_name[1]
+        file_index = int(parsed_name[1])
         curr_file_data = file_data(file_name, byte_distr[file_index], \
             byte_prob_distr_no_zero[file_index], \
-            two_grams_dicts[curr_sample[i]], best_extractors[curr_sample[i]])
+            two_grams_dicts[curr_sample[i]], best_extractors[curr_sample[i]], file_index)
         data_list.append(curr_file_data)
 print('Dumping!')
 with open('gathered_data.pkl', 'wb+') as handle:
-    pickle.dump(data_list, protocol=pickle.HIGHEST_PROTOCOL)
+    pickle.dump(dataset, file=handle, protocol=pickle.HIGHEST_PROTOCOL)
 print('Dumped.')
 
 
