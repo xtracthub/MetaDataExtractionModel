@@ -4,7 +4,7 @@ from classDeclarations import file_data
 from random import sample
 MAX_SAMPLE_SIZE = 100
 
-Path = "../../CDIAC8"
+Path = "../../CDIACPub8"
 
 file_index = 0
 imgs = []
@@ -13,17 +13,17 @@ pdfs = []
 for subdir, dirs, files in os.walk(Path):
     for file_name in files:
         if file_name.endswith('.png'):
-            imgs.append(file_name + 'kEy' + file_index)
+            imgs.append(file_name + 'kEy' + str(file_index))
         elif file_name.endswith('.csv'):
-            csvs.append(file_name + 'kEy' + file_index)
+            csvs.append(file_name + 'kEy' + str(file_index))
         elif file_name.endswith('.pdf'):
-            pdfs.append(file_name + 'kEy' + file_index)
+            pdfs.append(file_name + 'kEy' + str(file_index))
 
         file_index += 1
 
-img_sample_names = sample(imgs, 100)
-csv_sample_names = sample(csvs, 100)
-pdfs_sample_names = sample(pdfs, 100)
+img_sample_names = sample(imgs, MAX_SAMPLE_SIZE)
+csv_sample_names = sample(csvs, MAX_SAMPLE_SIZE)
+pdfs_sample_names = sample(pdfs,MAX_SAMPLE_SIZE)
 
 print("loading files now...")
 byte_distr = np.load("../byte_prob_distr.npy")
@@ -53,8 +53,9 @@ for idx, data_list in enumerate(dataset):
             byte_prob_distr_no_zero[file_index], \
             two_grams_dicts[curr_sample[i]], best_extractors[curr_sample[i]])
         data_list.append(curr_file_data)
-
+print('Dumping!')
 with open('gathered_data.pkl', 'wb+') as handle:
     pickle.dump(data_list, protocol=pickle.HIGHEST_PROTOCOL)
+print('Dumped.')
 
 
