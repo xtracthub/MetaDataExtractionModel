@@ -12,11 +12,11 @@ csvs = []
 pdfs = []
 for subdir, dirs, files in os.walk(Path):
     for file_name in files:
-        if file_name.endswith('.png'):
+        if file_name.endswith('.png') or file_name.endswith('.jpg'):
             imgs.append(file_name + 'kEy' + str(file_index))
-        elif file_name.endswith('.csv'):
+        elif file_name.endswith('.csv') or file_name.endswith('.tsv'):
             csvs.append(file_name + 'kEy' + str(file_index))
-        elif file_name.endswith('.pdf'):
+        elif file_name.endswith('.pdf') or file_name.endswith('.txt'):
             pdfs.append(file_name + 'kEy' + str(file_index))
 
         file_index += 1
@@ -54,7 +54,7 @@ for idx, data_list in enumerate(dataset):
             two_grams_dicts[curr_sample[i]], best_extractors[curr_sample[i]], file_index)
         data_list.append(curr_file_data)
 print('Dumping!')
-with open('gathered_data.pkl', 'wb+') as handle:
+with open('gathered_data_enhanced.pkl', 'wb+') as handle:
     pickle.dump(dataset, file=handle, protocol=pickle.HIGHEST_PROTOCOL)
 print('Dumped.')
 

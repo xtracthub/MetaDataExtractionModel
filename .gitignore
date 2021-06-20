@@ -20,3 +20,5 @@ CorrelatingExtractors/.vscode/settings.json
 .gitignore
 subdataset/gathered_data.pkl
 subdataset/gathered_data_2_grams_NOPP.pkl
+subdataset/gathered_data_enhanced.pkl
+subdataset/PCA vs Kernel PCA.png
