@@ -2,7 +2,7 @@ import os, json, pickle
 import numpy as np
 from classDeclarations import file_data
 from random import sample
-MAX_SAMPLE_SIZE = 100
+MAX_SAMPLE_SIZE = 200
 
 Path = "../../CDIACPub8"
 
@@ -54,7 +54,7 @@ for idx, data_list in enumerate(dataset):
             two_grams_dicts[curr_sample[i]], best_extractors[curr_sample[i]], file_index)
         data_list.append(curr_file_data)
 print('Dumping!')
-with open('gathered_data_enhanced.pkl', 'wb+') as handle:
+with open('gathered_data_enhanced_200.pkl', 'wb+') as handle:
     pickle.dump(dataset, file=handle, protocol=pickle.HIGHEST_PROTOCOL)
 print('Dumped.')
 
