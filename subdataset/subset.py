@@ -1,33 +1,37 @@
-import os, json, pickle
+import os, json, pickle, csv, pandas
 import numpy as np
 from classDeclarations import file_data
 from random import sample
-MAX_SAMPLE_SIZE = 200
+MAX_SAMPLE_SIZE = 100
 
 Path = "../../CDIACPub8"
 
-file_index = 0
 imgs = []
 csvs = []
 pdfs = []
+
+missing_count = 0
+df = pandas.read_csv('../cdiac_naivetruth_processed.csv', index_col='path')
 for subdir, dirs, files in os.walk(Path):
     for file_name in files:
-        if file_name.endswith('.png') or file_name.endswith('.jpg'):
-            imgs.append(file_name + 'kEy' + str(file_index))
-        elif file_name.endswith('.csv') or file_name.endswith('.tsv'):
-            csvs.append(file_name + 'kEy' + str(file_index))
-        elif file_name.endswith('.pdf') or file_name.endswith('.txt'):
-            pdfs.append(file_name + 'kEy' + str(file_index))
+        file_path = os.path.abspath(os.path.join(subdir, file_name))
+        if df['path'].str.contains(file_name).any():
+            if file_path.endswith('.png') or file_path.endswith('.jpg'):
+                imgs.append(file_path)
+            elif file_path.endswith('.csv') or file_path.endswith('.tsv'):
+                csvs.append(file_path)
+            elif file_path.endswith('.pdf') or file_path.endswith('.txt'):
+                pdfs.append(file_path)
+        else:
+            missing_count += 1
 
-        file_index += 1
 
 img_sample_names = sample(imgs, MAX_SAMPLE_SIZE)
 csv_sample_names = sample(csvs, MAX_SAMPLE_SIZE)
-pdfs_sample_names = sample(pdfs,MAX_SAMPLE_SIZE)
+pdfs_sample_names = sample(pdfs, MAX_SAMPLE_SIZE)
 
 print("loading files now...")
 byte_distr = np.load("../byte_prob_distr.npy")
-byte_prob_distr_no_zero = np.load("../byte_prob_distr_no_zero.npy")
 two_grams_dicts = json.load(open("../2_grams_PP.json"))
 best_extractors = json.load(open("../CorrelatingExtractors/best_extractors.json"))
 print("loading files done!")
@@ -45,16 +49,12 @@ for idx, data_list in enumerate(dataset):
     else:
         curr_sample = pdfs_sample_names
 
-    for i in range(MAX_SAMPLE_SIZE):
-        parsed_name = curr_sample[i].split("kEy")
-        file_name = parsed_name[0]
-        file_index = int(parsed_name[1])
-        curr_file_data = file_data(file_name, byte_distr[file_index], \
-            byte_prob_distr_no_zero[file_index], \
-            two_grams_dicts[curr_sample[i]], best_extractors[curr_sample[i]], file_index)
+    for file_name in curr_sample:
+        curr_file_data = file_data(file_name, byte_distr[file_name], two_grams_dicts[file_name], df.at[file_name, 'file_label'])
         data_list.append(curr_file_data)
 print('Dumping!')
-with open('gathered_data_enhanced_200.pkl', 'wb+') as handle:
+
+with open('gathered_data_revised.pkl', 'wb+') as handle:
     pickle.dump(dataset, file=handle, protocol=pickle.HIGHEST_PROTOCOL)
 print('Dumped.')
 

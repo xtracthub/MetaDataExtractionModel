@@ -23,3 +23,8 @@ subdataset/gathered_data_2_grams_NOPP.pkl
 subdataset/gathered_data_enhanced.pkl
 subdataset/gathered_data_enhanced_200.pkl
 subdataset/PCA vs Kernel PCA.png
+cdiac_naivetruth_processed.csv
+cdiac_naivetruth.csv
+subdataset/__pycache__/classDeclarations.cpython-38.pyc
+one_grams.json
+subdataset/__pycache__/classDeclarations.cpython-38.pyc
