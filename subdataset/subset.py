@@ -11,7 +11,7 @@ csvs = []
 pdfs = []
 
 missing_count = 0
-df = pandas.read_csv('../cdiac_naivetruth_processed.csv', index_col='path')
+df = pandas.read_csv('../cdiac_naivetruth_processed.csv')
 for subdir, dirs, files in os.walk(Path):
     for file_name in files:
         file_path = os.path.abspath(os.path.join(subdir, file_name))
@@ -31,9 +31,12 @@ csv_sample_names = sample(csvs, MAX_SAMPLE_SIZE)
 pdfs_sample_names = sample(pdfs, MAX_SAMPLE_SIZE)
 
 print("loading files now...")
-byte_distr = np.load("../byte_prob_distr.npy")
-two_grams_dicts = json.load(open("../2_grams_PP.json"))
-best_extractors = json.load(open("../CorrelatingExtractors/best_extractors.json"))
+one_gram = json.load(open('../one_grams_distr.json', 'r'))
+two_gram = json.load(open('../two_grams_distr.json', 'r'))
+
+byte_distr = pandas.DataFrame.from_dict(one_gram)
+two_grams_dicts = pandas.DataFrame.from_dict(two_gram)
+#best_extractors = json.load(open("../CorrelatingExtractors/best_extractors.json"))
 print("loading files done!")
 
 img_data = []
@@ -48,14 +51,17 @@ for idx, data_list in enumerate(dataset):
         curr_sample = csv_sample_names
     else:
         curr_sample = pdfs_sample_names
-
+    best_extractor_row_index = df.path[df.path==file_name].index.tolist()
+    if len(best_extractor_row_index) < 1:
+        best_extractor = 'None'
+    else:
+        best_extractor = str(df.iloc[best_extractor_row_index[0]]['file_label'])
     for file_name in curr_sample:
-        curr_file_data = file_data(file_name, byte_distr[file_name], two_grams_dicts[file_name], df.at[file_name, 'file_label'])
+        curr_file_data = file_data(file_name, byte_distr[file_name], two_grams_dicts[file_name], best_extractor)
         data_list.append(curr_file_data)
 print('Dumping!')
 
 with open('gathered_data_revised.pkl', 'wb+') as handle:
     pickle.dump(dataset, file=handle, protocol=pickle.HIGHEST_PROTOCOL)
 print('Dumped.')
-
 
