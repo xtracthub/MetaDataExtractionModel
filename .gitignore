@@ -36,3 +36,11 @@ subdataset/gathered_data_revised.pkl
 subdataset/__pycache__/classDeclarations.cpython-38.pyc
 subdataset/__pycache__/classDeclarations.cpython-38.pyc
 CDIACFileData/
+subdataset/gathered_data_revised_256.pkl
+subdataset/gathered_data_revised_512.pkl
+.vscode/settings.json
+.vscode/settings.json
+subdataset/gathered_data_appened_1MB_v1.pkl
+subdataset/gathered_data_appened_512KB_v1.pkl
+subdataset/gathered_data_appened_256KB_v1.pkl
+subdataset/one_grams_distr_1MB_appended.db
