@@ -44,3 +44,6 @@ subdataset/gathered_data_appened_1MB_v1.pkl
 subdataset/gathered_data_appened_512KB_v1.pkl
 subdataset/gathered_data_appened_256KB_v1.pkl
 subdataset/one_grams_distr_1MB_appended.db
+subdataset/gathered_data_appended_1MB_v2.pkl
+subdataset/gathered_data_appended_256KB_v2.pkl
+subdataset/gathered_data_appended_512KB_v2.pkl
