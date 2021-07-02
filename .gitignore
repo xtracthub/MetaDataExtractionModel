@@ -47,3 +47,5 @@ subdataset/one_grams_distr_1MB_appended.db
 subdataset/gathered_data_appended_1MB_v2.pkl
 subdataset/gathered_data_appended_256KB_v2.pkl
 subdataset/gathered_data_appended_512KB_v2.pkl
+subdataset/gathered_data_byte_vector
+subdataset/gathered_data_distr
