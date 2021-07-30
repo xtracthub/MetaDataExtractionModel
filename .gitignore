@@ -49,3 +49,4 @@ subdataset/gathered_data_appended_256KB_v2.pkl
 subdataset/gathered_data_appended_512KB_v2.pkl
 subdataset/gathered_data_byte_vector
 subdataset/gathered_data_distr
+subdataset/gathered_data_byte_vector_raw
