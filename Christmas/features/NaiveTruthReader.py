@@ -51,17 +51,3 @@ class NaiveTruthReader(object):
 
     def get_feature_maker(self):
         return self.feature
-
-
-def get_extension(filename):
-    """Retrieves the extension of a file.
-
-    Parameter:
-    filename (str): Name of file you want to get extension from.
-
-    Return:
-    (str): File extension of filename.
-    """
-    if "." not in filename:
-        return "None"
-    return filename[filename.rfind("."):]

@@ -60,3 +60,11 @@ class HeadBytes(FeatureMaker):
             y = self.class_table[entry[-1]]
         return np.array(x), y
 
+    def getFileExtension(self, entry):
+        filename = entry[1]
+
+        if "." not in filename:
+            return None
+
+        return filename[filename.rfind("."):]
+
